@@ -1,0 +1,298 @@
+:root {
+    --hour-h: 56px; /* высота часа */
+  }
+  
+  /* страница */
+  .calendarWrap {
+    min-height: 100vh;
+    display: flex;
+    background: #cfcfcf;
+    font-family: Arial, sans-serif;
+    color: #222;
+  }
+  
+  .calendarMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* topbar */
+  .calTopbar {
+    height: 66px;
+    background: #ffffff;
+    border-bottom: 2px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+  }
+  
+  .calTitle {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .calTopRight {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .calViewTabs {
+    display: flex;
+    gap: 6px;
+    border: 1px solid #d6d6d6;
+    background: #f4f4f4;
+    padding: 4px;
+  }
+  
+  .tab {
+    border: none;
+    background: transparent;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  
+  .tab.active {
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+  }
+  
+  .createBtn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 14px;
+    background: #2db356;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  
+  /* body layout */
+  .calBody {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 14px;
+    padding: 14px;
+    background: #efefef;
+  }
+  
+  /* left */
+  .calLeft {
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .miniMonth {
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    background: #fff;
+  }
+  
+  .miniHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .miniTitle {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  
+  .miniWeek {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  
+  .miniWeekDay {
+    font-size: 11px;
+    opacity: 0.7;
+    text-align: center;
+  }
+  
+  .miniGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  
+  .miniCell {
+    height: 28px;
+    border: 1px solid #e3e3e3;
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .miniCell.active {
+    outline: 2px solid #2db356;
+    background: #fff;
+  }
+  
+  .miniCell.empty {
+    border-color: transparent;
+    background: transparent;
+    cursor: default;
+  }
+  
+  .typeBox {
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+  }
+  
+  .typeTitle {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .typeList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .typeItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  /* center */
+  .calCenter {
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .weekHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  
+  .weekRange {
+    font-weight: 700;
+  }
+  
+  .navBtn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #d6d6d6;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .gridWrap {
+    overflow: auto;
+  }
+  
+  .gridHeader {
+    display: grid;
+    grid-template-columns: 90px repeat(7, 1fr);
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  
+  .timeColHeader {
+    border-right: 1px solid #e1e1e1;
+  }
+  
+  .dayColHeader {
+    padding: 10px 10px;
+    border-right: 1px solid #e1e1e1;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  
+  .dayName {
+    font-weight: 700;
+  }
+  
+  .dayDate {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  .gridBody {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+  }
+  
+  .timeCol {
+    border-right: 1px solid #e1e1e1;
+  }
+  
+  .timeCell {
+    height: var(--hour-h);
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #666;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .daysCols {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .dayCol {
+    position: relative;
+    border-right: 1px solid #e1e1e1;
+    background: #fff;
+  }
+  
+  .hourCell {
+    height: var(--hour-h);
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  /* event cards */
+  .eventCard {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-left-width: 4px;
+    background: #fff7e6;
+    padding: 8px;
+    overflow: hidden;
+  }
+  
+  .eventTitle {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  
+  .eventTime {
+    font-size: 11px;
+    opacity: 0.75;
+  }
+  
+  /* разные типы */
+  .type-task { background: #fff0f0; border-left-color: #ff6f6f; }
+  .type-call { background: #f3f6ff; border-left-color: #4b74ff; }
+  .type-meeting { background: #eefaf0; border-left-color: #2db356; }
+  .type-doc { background: #fff7e6; border-left-color: #f0a020; }
+  
