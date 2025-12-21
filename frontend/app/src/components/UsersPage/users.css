@@ -1,0 +1,220 @@
+.usersWrap {
+    min-height: 100vh;
+    display: flex;
+    background: #cfcfcf;
+    font-family: Arial, sans-serif;
+  }
+  
+  .usersMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .usersTopbar {
+    height: 66px;
+    background: #cfcfcf;
+    border-bottom: 2px solid #7b7b7b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+  }
+  
+  .usersTopbarRight {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .topAvatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #b54848;
+  }
+  
+  .topBadge {
+    width: 180px;
+    height: 38px;
+    background: #ff6f6f;
+    border: 1px solid rgba(0,0,0,0.25);
+  }
+  
+  .usersContent {
+    padding: 24px 26px;
+    background: #cfcfcf;
+    flex: 1;
+  }
+  
+  .usersGridTop {
+    display: grid;
+    grid-template-columns: 200px 1fr 420px;
+    gap: 22px;
+    align-items: start;
+  }
+  
+  .profileCard {
+    background: #d9d9d9;
+    border: 6px solid rgba(255,255,255,0.35);
+    padding: 18px 14px;
+    text-align: center;
+  }
+  
+  .avatarCircle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    background: #b54848;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .avatarCircle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .fullName {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+  
+  .infoCard {
+    background: #d9d9d9;
+    border: 6px solid rgba(255,255,255,0.35);
+    padding: 18px 18px;
+    min-height: 210px;
+  }
+  
+  .infoTitle {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: lowercase;
+  }
+  
+  .infoRow {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #6f6f6f;
+  }
+  
+  .infoLabel {
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  
+  .infoValue {
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .rightBigCard {
+    background: #d9d9d9;
+    border: 6px solid rgba(255,255,255,0.35);
+    min-height: 420px;
+  }
+  
+  .usersGridBottom {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  
+  .bottomCard {
+    background: #d9d9d9;
+    border: 6px solid rgba(255,255,255,0.35);
+    min-height: 240px;
+    position: relative;
+  }
+  
+  .cardTopLine {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #6f6f6f;
+  }
+  
+  .cardTopLine.short {
+    width: 30%;
+  }
+  
+  /* modal */
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal {
+    width: 520px;
+    background: #fff;
+    border: 1px solid #cfcfcf;
+    padding: 14px;
+  }
+  
+  .modalHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .modalTitle {
+    font-weight: 800;
+  }
+  
+  .xBtn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .avatarGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  
+  .avatarPick {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #e0e0e0;
+    background: #f7f7f7;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .avatarPick.active {
+    border-color: #2db356;
+  }
+  
+  .avatarPick img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .modalHint {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
