@@ -1,143 +1,106 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../HomePage/Sidebar";
 import "./users.css";
-
-const avatarList = [
-  "/avatar/user1.jpg",
-  "/avatar/user2.jpg",
-  "/avatar/user3.jpg",
-  "/avatar/user4.jpg",
-  "/avatar/user5.jpg",
-  "/avatar/user6.jpg",
-  "/avatar/user7.jpg",
-];
+import { getUsers } from "../../api/api"; // путь проверь: src/api/api.js
 
 export default function UsersPage() {
-  const [avatar, setAvatar] = useState(avatarList[0]);
-  const [pickerOpen, setPickerOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const user = {
-    lastName: "Кузнецов",
-    firstName: "Сергей",
-    patronymic: "Иванович",
-    gender: "мужчина",
-    birthday: "12.09.1992",
-    dept: "№23.06",
-    employeeId: "№458213",
-    exp: "5 лет.",
-  };
+  useEffect(() => {
+    getUsers()
+      .then((list) => {
+        const safe = Array.isArray(list) ? list.filter(Boolean) : [];
+        setUsers(safe);
+        setSelected(safe[0] || null);
+      })
+      .catch((e) => {
+        console.error("USERS LOAD ERROR:", e);
+        setUsers([]);
+        setSelected(null);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const fullName = selected
+    ? `${selected.lastName || ""} ${selected.firstName || ""} ${selected.patronymic || ""}`.trim()
+    : "Нет данных";
 
   return (
-    <div className="usersWrap">
+    <div className="homeWrap">
       <Sidebar />
 
-      <div className="usersMain">
-        {/* topbar как у вас */}
-        <header className="usersTopbar">
-          <div className="usersTopbarLeft" />
-          <div className="usersTopbarRight">
-            <div className="topAvatar" />
-            <div className="topBadge" />
-          </div>
+      <div className="homeMain">
+        <header className="homeTopbar">
+          <div className="homeTitle">сотрудники</div>
         </header>
 
-        <div className="usersContent">
-          {/* Верхняя строка: слева профиль + инфо, справа большой блок */}
-          <div className="usersGridTop">
-            <div className="profileCard">
-              <button
-                type="button"
-                className="avatarCircle"
-                onClick={() => setPickerOpen(true)}
-                title="Выбрать аватар"
-              >
-                {/* аватар картинка */}
-                <img src={avatar} alt="avatar" />
-              </button>
+        <div style={{ margin: 14, background: "#f2f2f2", padding: 20 }}>
+          {loading && <div>Загрузка...</div>}
 
-              <div className="fullName">
-                <div>{user.lastName} {user.firstName}</div>
-                <div>{user.patronymic}</div>
+          {!loading && users.length === 0 && (
+            <div>Нет сотрудников (API не вернул список)</div>
+          )}
+
+          {!loading && users.length > 0 && (
+            <>
+              <div style={{ display: "flex", gap: 20 }}>
+                <div style={{ width: 240 }}>
+                  {users.map((u) => (
+                    <button
+                      key={u.id}
+                      type="button"
+                      onClick={() => setSelected(u)}
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        padding: 10,
+                        marginBottom: 8,
+                        border: "1px solid #aaa",
+                        background: selected?.id === u.id ? "#ddd" : "#fff",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {(u.lastName || "") + " " + (u.firstName || "")}
+                    </button>
+                  ))}
+                </div>
+
+                <div style={{ flex: 1, border: "1px solid #aaa", padding: 16 }}>
+                  <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                    <div
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: "50%",
+                        background: "#b54848",
+                      }}
+                    />
+                    <div>
+                      <div style={{ fontWeight: 700 }}>{fullName}</div>
+                      <div style={{ marginTop: 6 }}>
+                        Пол: {selected?.gender || "—"}
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        Дата рождения: {selected?.birthDate || "—"}
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        Номер отдела: {selected?.departmentNumber || "—"}
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        Номер сотрудника: {selected?.employeeNumber || "—"}
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        Стаж: {selected?.experience || "—"}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div className="infoCard">
-              <div className="infoTitle">личная информация</div>
-
-              <div className="infoRow">
-                <span className="infoLabel">Пол</span>
-                <span className="infoValue">{user.gender}</span>
-              </div>
-
-              <div className="infoRow">
-                <span className="infoLabel">Дата рождения</span>
-                <span className="infoValue">{user.birthday}</span>
-              </div>
-
-              <div className="infoRow">
-                <span className="infoLabel">Номер отдела</span>
-                <span className="infoValue">{user.dept}</span>
-              </div>
-
-              <div className="infoRow">
-                <span className="infoLabel">Номер сотрудника</span>
-                <span className="infoValue">{user.employeeId}</span>
-              </div>
-
-              <div className="infoRow">
-                <span className="infoLabel">Стаж</span>
-                <span className="infoValue">{user.exp}</span>
-              </div>
-            </div>
-
-            <div className="rightBigCard" />
-          </div>
-
-          {/* Нижняя строка: два больших блока */}
-          <div className="usersGridBottom">
-            <div className="bottomCard">
-              <div className="cardTopLine" />
-            </div>
-
-            <div className="bottomCard">
-              <div className="cardTopLine short" />
-            </div>
-          </div>
+            </>
+          )}
         </div>
-
-        {/* Модалка выбора аватара */}
-        {pickerOpen && (
-          <div className="modalOverlay" onClick={() => setPickerOpen(false)}>
-            <div className="modal" onClick={(e) => e.stopPropagation()}>
-              <div className="modalHead">
-                <div className="modalTitle">Выбери аватар</div>
-                <button className="xBtn" type="button" onClick={() => setPickerOpen(false)}>
-                  ✕
-                </button>
-              </div>
-
-              <div className="avatarGrid">
-                {avatarList.map((src) => (
-                  <button
-                    key={src}
-                    type="button"
-                    className={`avatarPick ${src === avatar ? "active" : ""}`}
-                    onClick={() => {
-                      setAvatar(src);
-                      setPickerOpen(false);
-                    }}
-                  >
-                    <img src={src} alt="pick" />
-                  </button>
-                ))}
-              </div>
-
-              <div className="modalHint">
-                Папка: <b>public/avatars</b> (добавляй свои картинки туда)
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
