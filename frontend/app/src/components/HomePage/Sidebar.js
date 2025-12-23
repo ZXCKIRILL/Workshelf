@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import usersIcon from "../../assets/icons/users.svg";
+import usersIcon from "../../assets/icons/user.svg";
 import calendarIcon from "../../assets/icons/calendar.svg";
 import docsIcon from "../../assets/icons/documents.svg";
 import chatIcon from "../../assets/icons/chat.svg";
 
 
 const items = [
-  { id: "users", icon: usersIcon, label: "Сотрудники", to: "/users" },
+  { id: "user", icon: usersIcon, label: "Сотрудники", to: "/user" },
   { id: "calendar", icon: calendarIcon, label: "Календарь", to: "/calendar" },
   { id: "docs", icon: docsIcon, label: "Документы", to: "/docs" },
   { id: "chat", icon: chatIcon, label: "Чат", to: "/chat" },

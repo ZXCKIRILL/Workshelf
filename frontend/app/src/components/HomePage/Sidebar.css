@@ -1,50 +1,52 @@
-.sidebar {
-    width: 72px;
-    background: #d9d9d9;
-    border-right: 2px solid #6f6f6f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sbTopSpacer {
-    height: 66px;
-    width: 100%;
-  }
-  
-  .sbDivider {
-    width: 100%;
-    height: 2px;
-    background: #6f6f6f;
-  }
-  
-  .sbList {
-    width: 100%;
-  }
-  
-  .sbItem {
-    width: 100%;
-    height: 64px;
-    border-bottom: 1px solid #7b7b7b;
-    background: #e1e1e1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .sbItem img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    opacity: 0.9;
-  }
-  
-  .sbItem.active {
-    background: #cfcfcf;
-  }
-  
-  .sbItem:hover {
-    background: #d0d0d0;
-  }
-  
+/* ВСЕГДА одинаковый Sidebar */
+.sidebar{
+  width: 74px;
+  background: #d8d8d8;
+  border-right: 2px solid #7b7b7b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 74px;
+}
+
+.sbTopSpacer{
+  height: 66px; /* под topbar */
+  width: 100%;
+}
+
+.sbDivider{
+  width: 100%;
+  height: 2px;
+  background: #7b7b7b;
+}
+
+.sbList{
+  width: 100%;
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.sbItem{
+  width: 56px;
+  height: 46px;
+  border: 1px solid #8c8c8c;
+  background: #dcdcdc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sbItem img{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.sbItem.active{
+  background: #cfcfcf;
+  border-color: #555;
+}
