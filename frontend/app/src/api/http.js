@@ -1,70 +1,150 @@
-// src/api/http.js
+// src/api/client.js
 
-const USE_MOCKS = true; // ✅ сейчас true, потом станет false
-const API_URL = "http://localhost:5195";
+const API_BASE_URL = "http://localhost:5195/api";
 
-// --------- МОКИ (пока бекенд не нужен) ----------
-const mocks = {
-  "/api/home": {
-    currentUser: { id: 1, name: "Сергей Кузнецов" },
-    urgentTasks: [
-      { id: 1, title: "Срочная задача №1" },
-      { id: 2, title: "Срочная задача №2" },
-    ],
-    bossMessages: [{ id: 10, text: "Сообщение от начальника" }],
-    labNotifications: [
-      { id: 20, text: "Уведомление от лаборатории №1" },
-      { id: 21, text: "Уведомление от лаборатории №2" },
-    ],
+// ✅ Всегда используем реальный бэкенд (моки больше не нужны)
+const USE_MOCKS = false;
+
+// Для отладки: можно временно включить логи
+const DEBUG = false;
+
+// Базовая функция запроса — универсальная
+async function request(method, endpoint, data = null, config = {}) {
+  const url = API_BASE_URL + endpoint;
+
+  const headers = {
+    "Content-Type": "application/json",
+    // Если будет авторизация — добавим токен позже:
+  };
+
+  const options = {
+    method,
+    headers,
+    ...config,
+  };
+
+  if (data !== null) {
+    options.body = JSON.stringify(data);
+  }
+
+  if (DEBUG) {
+    console.log(`[API] ${method} ${url}`, data);
+  }
+
+  try {
+    const response = await fetch(url, options);
+
+    if (DEBUG) {
+      console.log(`[RESPONSE] ${response.status} ${response.url}`);
+    }
+
+    // 2xx → OK
+    if (response.ok) {
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return await response.json();
+      }
+      return await response.text();
+    }
+
+    // Обработка ошибок
+    let errorDetail = await response.text();
+    try {
+      const json = JSON.parse(errorDetail);
+      errorDetail = json.message || json.title || json;
+    } catch {}
+
+    const error = new Error(`HTTP ${response.status}: ${errorDetail}`);
+    error.status = response.status;
+    error.response = response;
+    throw error;
+  } catch (err) {
+    if (err.name === "TypeError" && err.message.includes("fetch")) {
+      throw new Error("Нет соединения с сервером. Проверьте, запущен ли вобще чертов бэкенд 6(.");
+    }
+    throw err;
+  }
+}
+
+// Экспортируем методы
+export const api = {
+  get: (endpoint) => request("GET", endpoint),
+  post: (endpoint, data) => request("POST", endpoint, data),
+  put: (endpoint, data) => request("PUT", endpoint, data),
+  patch: (endpoint, data) => request("PATCH", endpoint, data),
+  delete: (endpoint) => request("DELETE", endpoint),
+
+  // Специализированные методы (по контроллерам)
+  // Пользователи 
+  users: {
+    getAll: () => api.get("/users"),
+    getById: (id) => api.get(`/users/${id}`),
+    create: (dto) => api.post("/users", dto),
+    update: (id, dto) => api.put(`/users/${id}`, dto),
+    delete: (id) => api.delete(`/users/${id}`),
   },
 
-  "/api/users/me": {
-    lastName: "Кузнецов",
-    firstName: "Сергей",
-    patronymic: "Иванович",
-    gender: "мужчина",
-    birthday: "12.09.1992",
-    dept: "№23.06",
-    employeeId: "№458213",
-    exp: "5 лет.",
+  // Профили 
+  profiles: {
+    get: (userId) => api.get(`/userprofiles/${userId}`),
+    update: (userId, dto) => api.put(`/userprofiles/${userId}`, dto),
+    delete: (userId) => api.delete(`/userprofiles/${userId}`),
   },
 
-  "/api/calendar": {
-    events: [
-      { id: 1, title: "Созвон", date: "2025-12-22", time: "10:00" },
-      { id: 2, title: "Встреча", date: "2025-12-23", time: "14:00" },
-    ],
+  // Задачи 
+  tasks: {
+    getAll: () => api.get("/tasks"),
+    getById: (id) => api.get(`/tasks/${id}`),
+    create: (dto) => api.post("/tasks", dto),
+    update: (id, dto) => api.put(`/tasks/${id}`, dto),
+    delete: (id) => api.delete(`/tasks/${id}`),
+  },
+
+  // Назначения задач 
+  assignments: {
+    getAll: () => api.get("/taskassignments"),
+    assign: (dto) => api.post("/taskassignments", dto),
+  },
+
+  // Комментарии к задачам 
+  comments: {
+    getByTask: (taskId) => api.get(`/taskcomments/task/${taskId}`),
+    add: (dto) => api.post("/taskcomments", dto),
+  },
+
+  //  Файлы задач 
+  files: {
+    getByTask: (taskId) => api.get(`/taskfiles/task/${taskId}`),
+    upload: (dto) => api.post("/taskfiles", dto),
+  },
+
+  // Уведомления
+  notifications: {
+    getByUser: (userId) => api.get(`/notifications/user/${userId}`),
+    create: (dto) => api.post("/notifications", dto),
+    markAsRead: (id) => api.patch(`/notifications/${id}/mark-read`),
+    delete: (id) => api.delete(`/notifications/${id}`),
+  },
+
+  // Отделы 
+  departments: {
+    getAll: () => api.get("/departments"),
+    getById: (id) => api.get(`/departments/${id}`),
+    create: (dto) => api.post("/departments", dto),
+    update: (id, dto) => api.put(`/departments/${id}`, dto),
+    delete: (id) => api.delete(`/departments/${id}`),
+  },
+
+  // Логи аудита 
+  auditLogs: {
+    getAll: () => api.get("/auditlogs"),
+    getByUser: (userId) => api.get(`/auditlogs/user/${userId}`),
+    delete: (id) => api.delete(`/auditlogs/${id}`),
+  },
+
+  // Дополнительно: "Home" данные
+  // Ты пока не реализовал `/api/home` на бэкенде — давай добавим!
+  home: {
+    get: () => api.get("/home"), // ← нужно реализовать HomeController (см. ниже)
   },
 };
-
-function delay(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
-export async function get(path) {
-  if (USE_MOCKS) {
-    await delay(200);
-    if (!(path in mocks)) throw new Error(`Нет mock для ${path}`);
-    return mocks[path];
-  }
-
-  const res = await fetch(API_URL + path);
-  if (!res.ok) throw new Error(`GET ${path} -> ${res.status}`);
-  return res.json();
-}
-
-export async function post(path, body) {
-  if (USE_MOCKS) {
-    await delay(200);
-    return { ok: true };
-  }
-
-  const res = await fetch(API_URL + path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body ?? {}),
-  });
-
-  if (!res.ok) throw new Error(`POST ${path} -> ${res.status}`);
-  return res.json();
-}
