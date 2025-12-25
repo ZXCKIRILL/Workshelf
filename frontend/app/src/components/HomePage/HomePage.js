@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import { getHomeData } from "../../api/homeApi";
+import { get } from "../../api/http";
 import "./home.css";
 
 export default function HomePage() {
@@ -8,7 +8,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getHomeData()
+     get("/api/home")
       .then(setData)
       .catch((e) => console.error("HOME LOAD ERROR:", e))
       .finally(() => setLoading(false));

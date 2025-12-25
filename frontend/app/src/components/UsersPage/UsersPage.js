@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../HomePage/Sidebar";
 import "./users.css";
-import { getUsers } from "../../api/api"; // путь проверь: src/api/api.js
+import { get } from "../../api/http"; 
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -9,7 +9,7 @@ export default function UsersPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getUsers()
+    get("/api/users")
       .then((list) => {
         const safe = Array.isArray(list) ? list.filter(Boolean) : [];
         setUsers(safe);

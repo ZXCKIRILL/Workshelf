@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
+import { get } from "../../api/http"; 
 import "./calendar.css";
 
 const WEEK_DAYS = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
@@ -29,6 +30,8 @@ function formatDate(d) {
 export default function CalendarPage() {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
+  const [events, setEvents] = useState([]); 
+  const [loading, setLoading] = useState(true);
 
   const weekStart = useMemo(() => getWeekStart(date), [date]);
   const weekEnd = useMemo(() => addDays(weekStart, 7), [weekStart]);
@@ -43,6 +46,18 @@ export default function CalendarPage() {
     () => Array.from({ length: HOURS_TO - HOURS_FROM + 1 }, (_, i) => HOURS_FROM + i),
     []
   );
+  useEffect(() => {
+        get("/api/calendar") 
+            .then(data => {
+                setEvents(data.events || []);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Ошибка загрузки событий календаря:", error);
+                setEvents([]);
+                setLoading(false);
+            });
+    }, [date]); 
 
   const onPrevWeek = () => setDate((prev) => addDays(prev, -7));
   const onNextWeek = () => setDate((prev) => addDays(prev, 7));
@@ -100,11 +115,23 @@ export default function CalendarPage() {
               </div>
 
               <div className="daysArea">
-                {weekDates.map((_, col) => (
+                {weekDates.map((weekDate, col) => (
                   <div key={col} className="dayCol">
-                    {hours.map((h) => (
-                      <div key={h} className="gridCell" />
-                    ))}
+                    {hours.map((h) => {
+                      const cellDateTime = new Date(weekDate);
+                      cellDateTime.setHours(h, 0, 0, 0);
+                      const cellEvents = events.filter(event => {
+                        const eventDate = new Date(event.date + 'T' + (event.time || '00:00'));
+                        return eventDate >= cellDateTime && eventDate < new Date(cellDateTime.getTime() + 60 * 60 * 1000);
+                      });
+                      return (
+                        <div key={h} className="gridCell">
+                          {cellEvents.map(event => (
+                            <div key={event.id} className="eventItem">{event.title}</div> 
+                          ))}
+                        </div>
+                      );
+                    })}
                   </div>
                 ))}
               </div>
