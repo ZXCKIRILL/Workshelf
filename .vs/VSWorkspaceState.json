@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\frontend",
+    "\\frontend\\app",
+    "\\frontend\\app\\src",
+    "\\frontend\\app\\src\\api",
+    "\\frontend\\app\\src\\assets",
+    "\\frontend\\app\\src\\components",
+    "\\frontend\\app\\src\\components\\CalendarPage"
+  ],
+  "SelectedNode": "\\frontend\\app\\src\\api\\api.js",
+  "PreviewInSolutionExplorer": false
+}

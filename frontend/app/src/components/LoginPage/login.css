@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #6b6b6b 0%,
+    #8f8f8f 20%,
+    #cfcfcf 45%,
+    #ffffff 62%,
+    #ffffff 100%
+  );
+}
+
+
+/* контейнер формы */
+.formWrapper {
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 90px;
+}
+
+/* белая карточка */
+.formCard {
+  width: 480px;
+  height: 480px;          /* квадрат */
+  padding: 40px;          /* одинаково со всех сторон */
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* центр по вертикали */
+}
+
+/* форма */
+.label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.input {
+  height: 45px;
+  padding: 0 10px;
+  margin-bottom: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.input::placeholder {
+  font-size: 18px;
+}
+
+.btn {
+  height: 44px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 16px; 
+  border: none;
+  margin-top: 18px;  
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.forgot {
+  margin-top: 12px;
+  font-size: 18px;
+  color: red;
+  text-decoration: none;
+  margin-top: 18px;  
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

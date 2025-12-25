@@ -1,0 +1,168 @@
+/* ===== PAGE ===== */
+.homeWrap{
+  min-height:100vh;
+  display:flex;
+  background:#4a4a4a;         /* темный фон вокруг листа */
+  font-family: Arial, sans-serif;
+  color:#111;
+}
+
+.homeMain{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  background:#4a4a4a;
+}
+
+/* ===== TOPBAR ===== */
+.homeTopbar{
+  height:66px;
+  background:#d0d0d0;
+  border-bottom:2px solid rgba(0,0,0,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 22px;
+}
+
+.homeTitle{
+  font-size:18px;
+  text-transform: lowercase;
+  color:#2b2b2b;
+}
+
+.homeTopbarRight{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.topAvatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#b54848;
+}
+
+.topBadge{
+  width:170px;
+  height:34px;
+  background:#ff6f6f;
+  border:1px solid rgba(0,0,0,0.25);
+  padding:4px 10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  line-height:1.05;
+}
+
+.topName{ font-size:13px; font-weight:700; }
+.topRole{ font-size:11px; opacity:0.9; }
+
+/* ===== WHITE SHEET (как на макете) ===== */
+.homeGrid{
+  /* белый лист */
+  margin:14px 16px;
+  flex:1;
+  background:#f2f2f2;
+  border:4px solid rgba(0,0,0,0.20);
+  box-shadow: 0 0 0 6px rgba(255,255,255,0.35);
+  position:relative;
+
+  /* раскладка как на фигме */
+  display:grid;
+  grid-template-columns: 520px 1fr 420px;
+  grid-template-rows: 220px 1fr;
+  column-gap:48px;
+  row-gap:48px;
+  padding:28px 28px;
+  align-items:start;
+}
+
+/* ===== CARDS BASE ===== */
+.card{
+  background:#d9d9d9;
+  border:6px solid rgba(255,255,255,0.35);
+  box-sizing:border-box;
+}
+
+.cardTitle{
+  font-size:11px;
+  color:#3a3a3a;
+  text-transform: lowercase;
+  margin:14px 16px 8px;
+}
+
+.cardBody{
+  padding:0 16px 16px;
+  font-size:12px;
+  color:#2b2b2b;
+  line-height:1.35;
+}
+
+.lineItem{ margin-bottom:6px; }
+
+/* ===== POSITION (ТОЧНО как на макете) ===== */
+
+/* Левый верхний серый блок */
+.cardA{
+  grid-column:1;
+  grid-row:1;
+  width:420px;
+  height:180px;
+}
+
+/* Центр: сообщения (ниже и по центру) */
+.cardB{
+  grid-column:2;
+  grid-row:2;
+  width:420px;
+  height:220px;
+  justify-self:center;
+  margin-top:-40px; /* чтобы поднять как на макете */
+}
+
+/* Левый низ: срочные задачи (на макете это НЕ прямоугольник,
+   а текст + вертикальная палка, поэтому делаем карточку "прозрачной") */
+.cardC{
+  grid-column:1;
+  grid-row:2;
+  width:520px;
+  height:360px;
+
+  background:transparent;
+  border:none;
+  padding:0;
+}
+
+/* Заголовок/текст в срочных задачах как обычный текст на листе */
+.cardC .cardTitle{
+  margin:0 0 10px 0;
+  padding:0;
+}
+.cardC .cardBody{
+  padding:0;
+}
+
+/* Вертикальная палка внутри срочных задач */
+.cardC::after{
+  content:"";
+  position:absolute;
+  left: 28px;   /* чтобы считалось от листа */
+  top: 28px;
+  /* положение палки относительно блока C */
+  transform: translate(230px, 260px);
+  width:22px;
+  height:180px;
+  background:#d0d0d0;
+}
+
+/* Правый высокий блок: уведомления */
+.cardD{
+  grid-column:3;
+  grid-row:1 / span 2;
+  width:420px;
+  height:420px;
+  justify-self:end;
+  margin-top:18px;
+}
