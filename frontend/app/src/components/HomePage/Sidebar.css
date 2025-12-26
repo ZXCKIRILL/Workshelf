@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /* ВСЕГДА одинаковый Sidebar */
 .sidebar{
   width: 74px;
@@ -23,12 +24,59 @@
 .sbList{
   width: 100%;
   padding-top: 18px;
+=======
+/* Стиль контейнера для страницы */
+.usersWrap {
+  min-height: 100vh;
+  display: flex;
+  background: #cfcfcf;
+  font-family: Arial, sans-serif;
+}
+
+/* Основная часть страницы */
+.usersMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px; /* Пространство для левого сайдбара */
+}
+
+/* Верхняя панель */
+.usersTopbar {
+  height: 66px;
+  background: #cfcfcf;
+  border-bottom: 2px solid #7b7b7b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+}
+
+/* Сайдбар (левая панель) */
+.sidebar {
+  width: 220px; /* Размер сайдбара */
+  min-height: 100vh;
+  background: #1f1f1f;
+  border-right: 1px solid #2f2f2f;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 66px; /* Отступ сверху для учета topbar */
+}
+
+/* Размещение кнопок в сайдбаре */
+.sbList {
+>>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
 }
 
+<<<<<<< Updated upstream
 .sbItem{
   width: 56px;
   height: 46px;
@@ -50,3 +98,122 @@
   background: #cfcfcf;
   border-color: #555;
 }
+=======
+/* Основная часть контента */
+.usersContent {
+  padding: 24px 26px;
+  background: #cfcfcf;
+  flex: 1;
+  margin-left: 220px; /* Пространство для сайдбара */
+}
+
+/* Стиль для карточек профиля и информации */
+.usersGridTop {
+  display: grid;
+  grid-template-columns: 200px 1fr 420px;
+  gap: 22px;
+  align-items: start;
+}
+
+/* Карточка профиля */
+.profileCard {
+  background: #d9d9d9;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  padding: 18px 14px;
+  text-align: center;
+}
+
+/* Картинка аватара */
+.avatarCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #b54848;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Полное имя и роль пользователя */
+.fullName {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+/* Карточка с личной информацией */
+.infoCard {
+  background: #d9d9d9;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  padding: 18px 18px;
+  min-height: 210px;
+}
+
+/* Карточка с статистикой */
+.rightBigCard {
+  background: #d9d9d9;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  min-height: 420px;
+}
+
+/* Карточка для задач */
+.bottomCard {
+  background: #d9d9d9;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  min-height: 240px;
+  position: relative;
+}
+
+/* Модальные окна */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 520px;
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  padding: 14px;
+}
+
+/* Стиль кнопок в сайдбаре */
+.sbItem {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+/* Стиль активных кнопок */
+.sbItem.active {
+  background: #ff7a00;
+}
+
+/* Плашка для уведомлений */
+.sbBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #ff3b3b;
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+>>>>>>> Stashed changes

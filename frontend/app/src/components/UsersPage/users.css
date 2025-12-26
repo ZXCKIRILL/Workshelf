@@ -1,220 +1,322 @@
-.usersWrap {
-    min-height: 100vh;
-    display: flex;
-    background: #cfcfcf;
-    font-family: Arial, sans-serif;
-  }
-  
-  .usersMain {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .usersTopbar {
-    height: 66px;
-    background: #cfcfcf;
-    border-bottom: 2px solid #7b7b7b;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 22px;
-  }
-  
-  .usersTopbarRight {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  
-  .topAvatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #b54848;
-  }
-  
-  .topBadge {
-    width: 180px;
-    height: 38px;
-    background: #ff6f6f;
-    border: 1px solid rgba(0,0,0,0.25);
-  }
-  
-  .usersContent {
-    padding: 24px 26px;
-    background: #cfcfcf;
-    flex: 1;
-  }
-  
-  .usersGridTop {
-    display: grid;
-    grid-template-columns: 200px 1fr 420px;
-    gap: 22px;
-    align-items: start;
-  }
-  
-  .profileCard {
-    background: #d9d9d9;
-    border: 6px solid rgba(255,255,255,0.35);
-    padding: 18px 14px;
-    text-align: center;
-  }
-  
-  .avatarCircle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: none;
-    background: #b54848;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  
-  .avatarCircle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .fullName {
-    margin-top: 14px;
-    font-size: 13px;
-    line-height: 1.2;
-  }
-  
-  .infoCard {
-    background: #d9d9d9;
-    border: 6px solid rgba(255,255,255,0.35);
-    padding: 18px 18px;
-    min-height: 210px;
-  }
-  
-  .infoTitle {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    text-transform: lowercase;
-  }
-  
-  .infoRow {
-    display: grid;
-    grid-template-columns: 170px 1fr;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid #6f6f6f;
-  }
-  
-  .infoLabel {
-    font-size: 12px;
-    text-decoration: underline;
-  }
-  
-  .infoValue {
-    font-size: 12px;
-    text-align: center;
-  }
-  
-  .rightBigCard {
-    background: #d9d9d9;
-    border: 6px solid rgba(255,255,255,0.35);
-    min-height: 420px;
-  }
-  
-  .usersGridBottom {
-    margin-top: 18px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
-  
-  .bottomCard {
-    background: #d9d9d9;
-    border: 6px solid rgba(255,255,255,0.35);
-    min-height: 240px;
-    position: relative;
-  }
-  
-  .cardTopLine {
-    position: absolute;
-    top: 16px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #6f6f6f;
-  }
-  
-  .cardTopLine.short {
-    width: 30%;
-  }
-  
-  /* modal */
-  .modalOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-  }
-  
-  .modal {
-    width: 520px;
-    background: #fff;
-    border: 1px solid #cfcfcf;
-    padding: 14px;
-  }
-  
-  .modalHead {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  
-  .modalTitle {
-    font-weight: 800;
-  }
-  
-  .xBtn {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .avatarGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-  }
-  
-  .avatarPick {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 2px solid #e0e0e0;
-    background: #f7f7f7;
-    cursor: pointer;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  .avatarPick.active {
-    border-color: #2db356;
-  }
-  
-  .avatarPick img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .modalHint {
-    margin-top: 10px;
-    font-size: 12px;
-    opacity: 0.8;
-  }
-  
+/* ===== PAGE ===== */
+.usersWrap { 
+  min-height: 100vh;
+  display: flex;
+  background: #f7f7f7;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+ 
+}
+
+.usersMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== TOPBAR ===== */
+.usersTopbar {
+  height: 66px;
+  background: #ffffff;
+  border-bottom: 2px solid #dcdcdc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.usersTopbar:hover {
+  background-color: #f1f1f1;
+}
+
+.usersTopbarRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topAvatar {
+  width: 42px; /* Увеличено для учета бордера */
+  height: 42px; /* Увеличено для учета бордера */
+  border-radius: 50%;
+  background: #b54848;
+  border: 2px solid #fff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-sizing: border-box; /* Бордер включается в размеры */
+  display: flex; /* Для центрирования изображения */
+  align-items: center;
+  justify-content: center;
+}
+
+.topAvatar:hover {
+  transform: scale(1.1);
+}
+
+.topAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* Гарантируем круглую форму */
+  display: block;
+}
+
+.topBadge {
+  width: 180px;
+  height: 38px;
+  background: #ff6f6f;
+  border: 1px solid rgba(0,0,0,0.25);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== USERS CONTENT ===== */
+.usersContent {
+  padding: 30px 26px;
+  background: #ffffff;
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== GRID ===== */
+.usersGridTop {
+  display: grid;
+  grid-template-columns: 250px 1fr 420px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.profileCard {
+  background: #ffffff;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  padding: 18px 14px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.profileCard:hover {
+  transform: translateY(-8px);
+}
+
+.avatarCircle {
+  width: 128px; /* Увеличено для учета бордера */
+  height: 128px; /* Увеличено для учета бордера */
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  border: 4px solid #fff;
+  background: transparent;
+  box-sizing: border-box; /* Бордер включается в размеры */
+  display: flex; /* Для центрирования изображения */
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Центрирование в карточке */
+}
+
+.avatarCircle img {
+  width: 120px; /* Внутренний размер без бордера */
+  height: 120px; /* Внутренний размер без бордера */
+  object-fit: cover;
+  display: block;
+  border-radius: 50%; /* Дублируем круглую форму */
+  transition: transform 0.3s ease;
+}
+
+.avatarCircle:hover img {
+  transform: scale(1.05);
+}
+
+.fullName {
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Information Card Styles */
+.infoCard {
+  background: #ffffff;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  padding: 18px;
+  min-height: 210px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-5px);
+}
+
+.infoTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+  color: #444;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.infoLabel {
+  font-size: 14px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Right Big Card */
+.rightBigCard {
+  background: #ffffff;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  min-height: 420px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.rightBigCard:hover {
+  transform: translateY(-8px);
+}
+
+/* Grid at the bottom */
+.usersGridBottom {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.bottomCard {
+  background: #ffffff;
+  border: 6px solid rgba(255, 255, 255, 0.35);
+  min-height: 240px;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.bottomCard:hover {
+  transform: translateY(-5px);
+}
+
+.cardTopLine {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #6f6f6f;
+}
+
+.cardTopLine.short {
+  width: 30%;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 520px;
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.modalTitle {
+  font-weight: 800;
+  font-size: 20px;
+  color: #333;
+}
+
+.xBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ff6f6f;
+}
+
+.avatarGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.avatarPick {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #e0e0e0;
+  background: #f7f7f7;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 50%; /* Круглые миниатюры в модальном окне */
+  box-sizing: border-box;
+}
+
+.avatarPick.active {
+  border-color: #2db356;
+}
+
+.avatarPick img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%; /* Гарантируем круглую форму */
+}
+
+.modalHint {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.8;
+  color: #666;
+}

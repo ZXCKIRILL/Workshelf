@@ -1,3 +1,4 @@
+// Sidebar.js
 import { useLocation, useNavigate } from "react-router-dom";
 import usersIcon from "../../assets/icons/user.svg";
 import calendarIcon from "../../assets/icons/calendar.svg";
@@ -17,11 +18,17 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
+<<<<<<< Updated upstream
       <div className="sbTopSpacer" />
       <div className="sbDivider" />
 
       <div className="sbList">
         {items.map((item) => {
+=======
+      <div className="sbTop" />
+      <nav className="sbList">
+        {items.map(item => {
+>>>>>>> Stashed changes
           const active = pathname.startsWith(item.to);
 
           return (
@@ -36,6 +43,31 @@ export default function Sidebar() {
             </button>
           );
         })}
+<<<<<<< Updated upstream
+=======
+      </nav>
+      <div className="sbBottom">
+        <button
+          className="sbLogout"
+          onClick={async () => {
+            const userId = localStorage.getItem("userId");
+            if (userId) {
+              await api.post("/auditlogs", {
+                userId: +userId,
+                action: "Logout",
+                entityType: "User",
+                entityId: userId,
+                details: "User logged out",
+                timestamp: new Date().toISOString(),
+              });
+            }
+            localStorage.clear();
+            navigate("/login");
+          }}
+        >
+          Выйти
+        </button>
+>>>>>>> Stashed changes
       </div>
     </aside>
   );

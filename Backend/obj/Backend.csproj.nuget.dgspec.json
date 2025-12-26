@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< Updated upstream
     "C:\\Users\\Kirill\\Desktop\\Backendxzxzxz-master\\Backend\\Backend.csproj": {}
   },
   "projects": {
@@ -12,12 +13,25 @@
         "projectPath": "C:\\Users\\Kirill\\Desktop\\Backendxzxzxz-master\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Kirill\\Desktop\\Backendxzxzxz-master\\Backend\\obj\\",
+=======
+    "C:\\Users\\cawab\\Documents\\GitHub\\Workshelf\\Backend\\Backend.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\cawab\\Documents\\GitHub\\Workshelf\\Backend\\Backend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cawab\\Documents\\GitHub\\Workshelf\\Backend\\Backend.csproj",
+        "projectName": "Backend",
+        "projectPath": "C:\\Users\\cawab\\Documents\\GitHub\\Workshelf\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\cawab\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cawab\\Documents\\GitHub\\Workshelf\\Backend\\obj\\",
+>>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cawab\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +40,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

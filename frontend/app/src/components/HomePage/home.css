@@ -1,3 +1,418 @@
+/* Layout */
+.homeWrap {
+    min-height: 100vh;
+    display: flex;
+    background: #cfcfcf; /* общий серый фон как на макете */
+    font-family: Arial, sans-serif;
+    color: #222;
+  }
+
+  .sidebar {
+    width: 74px;
+    background: #d8d8d8;
+    border-right: 2px solid #7b7b7b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sbTopSpacer {
+    height: 66px; /* под верхнюю панель */
+    width: 100%;
+  }
+
+  .sbDivider {
+    width: 100%;
+    height: 2px;
+    background: #7b7b7b;
+  }
+
+  .sbList {
+    width: 100%;
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .sbItem {
+    width: 56px;
+    height: 46px;
+    border: 1px solid #8c8c8c;
+    background: #dcdcdc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sbItem.active {
+    background: #cfcfcf;
+    border-color: #555;
+  }
+
+  .sbIcon {
+    width: 22px;
+    height: 18px;
+    background: #333; /* имитация иконки */
+    border-radius: 3px;
+    opacity: 0.9;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    height: 66px;
+    background: #cfcfcf;
+    border-bottom: 2px solid #7b7b7b;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    justify-content: space-between;
+  }
+
+  .pageTitle {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    text-transform: lowercase;
+    color: #2b2b2b;
+  }
+
+  .topbarRight {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #b54848; /* красный кружок */
+  }
+
+  .userBadge {
+    min-width: 180px;
+    padding: 10px 12px;
+    background: #ff6f6f; /* красный прямоугольник */
+    border: 1px solid rgba(0,0,0,0.25);
+  }
+
+  .userName {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.1;
+    color: #1d1d1d;
+  }
+
+  .userRole {
+    font-size: 12px;
+    opacity: 0.9;
+    color: #1d1d1d;
+  }
+
+  .content {
+    padding: 26px 28px;
+    flex: 1;
+    background: #cfcfcf;
+    display: grid;
+    grid-template-columns: 380px 1fr 360px;
+    gap: 26px;
+    align-items: start;
+  }
+
+  /* Cards */
+  .card {
+    background: #ececec;
+    border: 2px solid #b6b6b6;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.35); /* похожий светлый слой как на макете */
+  }
+
+  .cardHead {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+    text-transform: lowercase;
+    color: #2a2a2a;
+  }
+
+  .cardBody {
+    padding: 12px 16px 16px;
+  }
+
+  .linkBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+    color: #2a2a2a;
+    opacity: 0.85;
+  }
+
+  .colLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .colCenter {
+    padding-top: 160px; /* чтобы центральный блок был ниже как на макете */
+  }
+
+  .colRight {
+    padding-top: 40px;
+  }
+
+  /* Stats */
+  .statsRow {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .statBox {
+    width: 140px;
+    border: 2px solid #c2c2c2;
+    background: #dedede;
+    padding: 14px;
+  }
+
+  .statNum {
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .statLabel {
+    margin-top: 6px;
+    font-size: 12px;
+    opacity: 0.85;
+  }
+
+  .statMiniGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .mini {
+    border: 2px solid #c2c2c2;
+    background: #f0f0f0;
+    padding: 10px 12px;
+  }
+
+  .miniNum {
+    font-weight: 800;
+    font-size: 16px;
+  }
+
+  .miniLabel {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+  .progress {
+    margin-top: 12px;
+    height: 10px;
+    border: 2px solid #c2c2c2;
+    background: #f5f5f5;
+  }
+
+  .progressFill {
+    height: 100%;
+    background: #9b9b9b;
+  }
+
+  .hint {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.8;
+    line-height: 1.3;
+  }
+
+  /* Tasks */
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .taskRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #c2c2c2;
+    background: #f4f4f4;
+  }
+
+  .taskMain {
+    min-width: 0;
+  }
+
+  .taskTitle {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .taskMeta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .pill {
+    padding: 2px 8px;
+    border: 1px solid #aaa;
+    background: #e9e9e9;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #444;
+  }
+
+  .deadline {
+    white-space: nowrap;
+  }
+
+  .taskActions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid #777;
+    background: #e5e5e5;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  .btn.primary {
+    background: #d9d9d9;
+    border-width: 2px;
+  }
+
+  /* Messages */
+  .msgList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .msgRow {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #c2c2c2;
+    background: #f4f4f4;
+  }
+
+  .msgAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #b0b0b0;
+    flex: 0 0 auto;
+  }
+
+  .msgBody {
+    flex: 1;
+  }
+
+  .msgTop {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .msgFrom {
+    font-weight: 800;
+    font-size: 13px;
+  }
+
+  .msgTime {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .msgText {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .msgActions {
+    margin-top: 10px;
+  }
+
+  /* Notifications */
+  .notifList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notifRow {
+    display: grid;
+    grid-template-columns: 10px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 10px 12px;
+    border: 2px solid #c2c2c2;
+    background: #f4f4f4;
+  }
+
+  .badge {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: #9b9b9b;
+    margin-top: 3px;
+  }
+
+  .badge.new {
+    background: #6a2f2f;
+  }
+
+  .notifText {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .notifTime {
+    font-size: 12px;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .empty {
+    padding: 16px;
+    border: 2px dashed #b5b5b5;
+    background: #f7f7f7;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+
 /* ===== PAGE ===== */
 .homeWrap{
   min-height:100vh;
